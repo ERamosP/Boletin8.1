@@ -35,26 +35,25 @@ public class MenuNotas {
 
         String opcion;
         boolean salirMenu=false;
-
+        int [] notas=new int[Notas.totalAlumnos];
+        Notas.crearRandom(notas);
         do {
             crearMenu();
             opcion= leerOpcion();
-            int[] alumnos=new int[numeroElementos()];
-            int [] notas=Notas.crearRandom(alumnos);
+
             switch (opcion){
                 case "1":
 
-                    Notas.totalNotas(notas);
-                    System.out.println(Notas.notaMedia());
+                  System.out.println("La media de las notas ess: " + Notas.notaMedia(notas));
                     break;
                 case "2":
-                    System.out.println(Arrays.toString(new int[]{Notas.notaMasAlta(notas)}));
+                    System.out.println("La nota mas alta es: "+ Notas.notaMasAlta(notas));
                     break;
-                case "3":System.out.println("En construccion");
+                case "3":System.out.println("La nota mas baja es: "+ Notas.notaMasBaja(notas));
                     break;
-                case "4":System.out.println("En construccion");
+                case "4":System.out.println("Los alumnos por encima de la media son: " + Notas.alumnosEncima(notas));
                     break;
-                case "5":System.out.println("En construccion");
+                case "5":System.out.println("Los alumnos por debajo de la media: "+ Notas.alumnosBajoNota(notas));
                     break;
                 case "0":
                     salirMenu=true;
