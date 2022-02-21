@@ -47,7 +47,7 @@ public class MenuVuelos {
                    String opcionSecundario=leerDatos();
                    switch (opcionSecundario){
                        case "1":
-                           System.out.println("");
+                          Vuelos.asientoNoFumador();
                            break;
                        case "2":
                            System.out.println("");
