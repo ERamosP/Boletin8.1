@@ -36,8 +36,11 @@ el resto.
 
         System.out.println("¿Desea elegir un asiento en no fumador?");
         String respuesta=MenuVuelos.leerDatos();
-        if (respuesta=='s')
-        int contFumador;
+        if (respuesta=="s"){
+            System.out.println();
+            int contFumador;
+        }
+
 
 
             return  contFumador;
