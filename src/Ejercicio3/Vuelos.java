@@ -1,65 +1,97 @@
 package Ejercicio3;
-
+import java.util.Arrays;
 public class Vuelos {
-
 
     /*
      El programa debe contemplar
 zona de fumadores y no fumadores. Los no fumadores ocuparan los asientos 1-16 y los fumadores
 el resto.
      */
-    private final int ASIENTOS = 20;
-    int[] asientos = new int[ASIENTOS];
-    static int contNoFumador;
-    static int contFumador;
 
-    public int getASIENTOS() {
-        return ASIENTOS;
-    }
+    static final int[] sitiosLibres = new int[20];
+    static int contNoFumador = 16;
+    static int contFumador = 4;
 
-    public Vuelos() {
-    }
 
-    public static int[] pasaje(int[] asientos) {
+    public static void asientosNoFumadores(int[] asientos) {
 
-        boolean ocupado = true;
-        for (int i = 0; i < asientos.length; i++) {
+        int ocupados = nAsientos();
 
-            if (ocupado != true) {
-                asientos[i] = 0;
-            } else {
+        if (contNoFumador > 0) {
+            contNoFumador -= ocupados;
+            for (int i = 0; i < ocupados; i++) {
                 asientos[i] = 1;
+
             }
+
+        } else {
+           System.out.println(System.lineSeparator()+"No existen asientos libres en la zona de no fumadores");
+            reservarOtraZona(asientos);
         }
-        return asientos;
+
+
     }
+
 
     public static int nAsientos() {
-        System.out.println("¿Cuantos asientos desea reservar?");
+        System.out.println("¿Cuantos asientos quiere reservar?");
         int numero = MenuVuelos.sc.nextInt();
         return numero;
     }
 
-    public static int asientoNoFumador() {
+    public static void asientoFumador(int[] asientos) {
 
+        int ocupados = nAsientos();
 
+        if (contFumador > 0) {
+            contFumador -= ocupados;
+            for (int i = 0; i < ocupados; i++) {
+                asientos[i] = 1;
 
-        if (contNoFumador <= 15) {
+            }
 
-            contNoFumador += nAsientos();
+        } else {
+            System.out.println(System.lineSeparator() + "No existen asientos libres en la zona de fumadores");
+            reservarOtraZona(asientos);
+
         }
-        return contNoFumador;
+ }
+
+    public static boolean preguntarCAmbioAsiento() {
+
+        boolean opcion;
+        System.out.println("¿Desea elegir un pasaje en la otra zona?");
+        String respuesta=MenuVuelos.leerDatos();
+        if (respuesta != "si") {
+            System.out.println("Espere al proximo vuelo para poder viajar");
+            opcion=false;
+        } else {
+            opcion=true;
+        }
+        return opcion;
     }
 
-    public static int asientosFumandor(){
+    public static void reservarOtraZona(int[] asientos) {
+        boolean respuesta = preguntarCAmbioAsiento();
+        int ocupados = nAsientos();
+        if (respuesta == true && contFumador == 4 && contNoFumador < 16) {
+            contNoFumador -= ocupados;
+            for (int i = 0; i < ocupados; i++) {
+                asientos[i] = 1;
 
-        if (contFumador <= 4) {
-
-            contFumador += nAsientos();
+            }
         }
-        return contFumador;
+        else if (respuesta == true && contFumador < 4 && contNoFumador == 16) {
+            contFumador-=ocupados;
+            for (int i = 0; i < ocupados; i++) {
+                asientos[i] = 1;
+
+            }
+
+        }
     }
 
+    public static void impirimirVuelo(int [] asientos ){
+        System.out.println(Arrays.toString(asientos));
+    }
 }
-
-

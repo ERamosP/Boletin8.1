@@ -47,10 +47,10 @@ public class MenuVuelos {
                    String opcionSecundario=leerDatos();
                    switch (opcionSecundario){
                        case "1":
-                          Vuelos.asientoNoFumador();
+                          Vuelos.asientosNoFumadores(Vuelos.sitiosLibres);
                            break;
                        case "2":
-                           System.out.println("");
+                           Vuelos.asientoFumador(Vuelos.sitiosLibres);
                            break;
                        case "0":
                            System.out.println("");
@@ -61,6 +61,7 @@ public class MenuVuelos {
                     break;
                 case "0":
                     salirMenuPpal=true;
+
                     break;
 
                 default:
@@ -68,7 +69,7 @@ public class MenuVuelos {
             }
 
         }while (!salirMenuPpal);
-
+        Vuelos.impirimirVuelo(Vuelos.sitiosLibres);
     }
 
 }
